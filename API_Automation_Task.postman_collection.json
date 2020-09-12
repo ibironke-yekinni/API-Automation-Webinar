@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "7614cc55-4ba7-438e-9165-3f5195906a41",
+		"name": "API Automation Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get blog post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e2687b49-705e-4999-a8a5-0de6ffde2d5d",
+						"exec": [
+							"//Test1: To confirm test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Test2: To confirm status code has the right string\r",
+							"pm.test(\"Status code has OK has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test3: To confirm the body response\r",
+							"pm.test(\"Body response has a content\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"My first blog post :)\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"My first blog post :)\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{blogLink}}",
+					"host": [
+						"{{blogLink}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
